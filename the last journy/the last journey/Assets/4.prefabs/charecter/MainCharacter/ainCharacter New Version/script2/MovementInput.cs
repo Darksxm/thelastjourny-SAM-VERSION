@@ -6,7 +6,7 @@ public class MovementInput : MonoBehaviour
 {
     public float InputX;
     public float InputZ;
-   
+
     public float desiredRotationSpeed;
     public float Speed;
     public float Sprint;
@@ -14,29 +14,29 @@ public class MovementInput : MonoBehaviour
     public float sprintSpeed = 2.0f;
 
 
-    const float acceleration=0.2f;
+    const float acceleration = 0.2f;
 
 
-   
-   
+
+
     public float allowPlayerRotation;
     public float verticalVel;
     public float gravity_g = 5f;
     public float ground_detect_radius = 0.4f;
 
 
-    public float jumpHeigh = 20f; 
-    public float jumpSpeed = 20f; 
+    public float jumpHeigh = 20f;
+    public float jumpSpeed = 20f;
 
 
     public Transform ground_detector;
 
 
-    public LayerMask platform_mask; 
+    public LayerMask platform_mask;
     public LayerMask ground_mask;
 
 
-    
+
     public Vector3 desiredMovementDirection;
     private Vector3 moveVector;
     [HideInInspector]
@@ -64,28 +64,29 @@ public class MovementInput : MonoBehaviour
         velocity.y = 0;
     }
     private void Update()
-    {   
+    {
         InputMagnitude();
 
         is_grounded = Physics.CheckSphere(ground_detector.position, ground_detect_radius, ground_mask);
-       
+
         if (is_grounded)
         {
-            verticalVel -= 0; 
-        } else
+            verticalVel -= 0;
+        }
+        else
         {
             verticalVel -= 0;
         }
         moveVector = new Vector3(0, verticalVel, 0);
-      
+
         bool is_platforming = Physics.CheckSphere(ground_detector.position, ground_detect_radius, platform_mask);
-       
+
         velocity.y -= gravity_g * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-       
+
         if (Input.GetKey(KeyCode.LeftShift))
-        Acceleration();
+            Acceleration();
 
 
     }
@@ -125,17 +126,17 @@ public class MovementInput : MonoBehaviour
                 anim.SetBool("isInAir", true);
 
             }
-        
-        else
-        {
-            is_grounded = true;
-            anim.SetBool("isInAir", false);
-            velocity.y = 0f;
-            velocity.z = 0f;
+
+            else
+            {
+                is_grounded = true;
+                anim.SetBool("isInAir", false);
+                velocity.y = 0f;
+                velocity.z = 0f;
 
 
+            }
         }
-    }
         /* else if (is_platforming)
          {
              if (is_jumping)
@@ -149,37 +150,37 @@ public class MovementInput : MonoBehaviour
                  velocity.y = -2f;
              }
          }*/
-/*        controller.Move(velocity * Time.deltaTime);
-*/
+        /*        controller.Move(velocity * Time.deltaTime);
+        */
     }
     void PlayerMoveAndRotation()
     {
 
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
-        
 
 
 
-            var camera = Camera.main;
-            var forward = cam.transform.forward;
-            var right = cam.transform.right;
 
-            forward.y = 0f;
-            right.y = 0f;
+        var camera = Camera.main;
+        var forward = cam.transform.forward;
+        var right = cam.transform.right;
 
-            forward.Normalize();
-            right.Normalize();
+        forward.y = 0f;
+        right.y = 0f;
 
-            desiredMovementDirection = forward * InputZ + right * InputX;
+        forward.Normalize();
+        right.Normalize();
 
-            if (blockRotationPlayer == false)
-            {
+        desiredMovementDirection = forward * InputZ + right * InputX;
+
+        if (blockRotationPlayer == false)
+        {
             is_grounded = true;
             controller.Move(desiredMovementDirection * Time.deltaTime * moveSpeed);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMovementDirection), desiredRotationSpeed);
-            }
-        
+        }
+
     }
 
     void InputMagnitude()
@@ -188,22 +189,22 @@ public class MovementInput : MonoBehaviour
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
 
-        anim.SetFloat("InputZ", InputZ, 0.0f, Time.deltaTime * 2f); 
+        anim.SetFloat("InputZ", InputZ, 0.0f, Time.deltaTime * 2f);
         anim.SetFloat("InputX", InputX, 0.0f, Time.deltaTime * 2f);
 
-       
+
 
 
         //calculate the input Magnitude
-        
-            Speed = new Vector2(InputX, InputZ).sqrMagnitude;
+
+        Speed = new Vector2(InputX, InputZ).sqrMagnitude;
 
         //physically move
 
         if (Speed > allowPlayerRotation)
         {
             anim.SetFloat("InputMagnitude", Speed, 0.0f, Time.deltaTime);
-            PlayerMoveAndRotation(); 
+            PlayerMoveAndRotation();
         }
         else if (Speed < allowPlayerRotation)
         {
@@ -215,7 +216,7 @@ public class MovementInput : MonoBehaviour
     {
 
         if (Input.GetKey(KeyCode.W))
-            {
+        {
 
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -235,16 +236,14 @@ public class MovementInput : MonoBehaviour
             {
                 isInAir = false;
                 is_grounded = true;
-               /* Speed = new Vector2(InputX, InputZ).sqrMagnitude;*/
+                /* Speed = new Vector2(InputX, InputZ).sqrMagnitude;*/
                 Speed = Mathf.Clamp(Speed, 0, 1);
                 anim.SetFloat("InputMagnitude", Speed, 0.0f, Time.deltaTime);
                 /*Speed -= acceleration;*/
-            } }
+            }
+        }
 
 
 
     }
-
-
-
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 320583949430095053}
   - component: {fileID: 320583948872430715}
   - component: {fileID: 7435931934660294720}
-  - component: {fileID: 1661808698}
   m_Layer: 11
   m_Name: controller_nocontroller 2
   m_TagString: Player
@@ -87,15 +86,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputX: 0
   InputZ: 0
-  desiredRotationSpeed: 0.2
+  desiredRotationSpeed: 2
   Speed: 0
   Sprint: 0
-  sprintSpeed: 1.84
   moveSpeed: 10.2
+  sprintSpeed: 1.84
   allowPlayerRotation: 0
   verticalVel: 0
   gravity_g: 75
   ground_detect_radius: 0.4
+  jumpHeigh: 20
   jumpSpeed: 35
   ground_detector: {fileID: 5251991631302667209}
   platform_mask:
@@ -112,21 +112,6 @@ MonoBehaviour:
   anim: {fileID: 320583949430095053}
   cam: {fileID: 0}
   controller: {fileID: 320583948872430715}
---- !u!114 &1661808698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5251991631036767313}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91f0f5dccc999c34da5e96307005e250, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 320583948872430715}
-  platform: {fileID: 0}
-  last_platform: 
 --- !u!1 &5251991631302667208
 GameObject:
   m_ObjectHideFlags: 0

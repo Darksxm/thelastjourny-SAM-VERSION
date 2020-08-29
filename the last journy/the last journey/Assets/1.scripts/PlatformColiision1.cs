@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformColiision : MonoBehaviour
+public class PlatformColiision1 : MonoBehaviour
 {
     public CharacterController player;
     public Transform platform;
