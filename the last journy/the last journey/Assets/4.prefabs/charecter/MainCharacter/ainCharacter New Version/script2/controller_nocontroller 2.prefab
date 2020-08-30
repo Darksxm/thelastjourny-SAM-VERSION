@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5251991631036767325}
   - component: {fileID: 320583949430095053}
   - component: {fileID: 320583948872430715}
-  - component: {fileID: 7435931934660294720}
+  - component: {fileID: 956632608}
   m_Layer: 11
   m_Name: controller_nocontroller 2
   m_TagString: Player
@@ -71,8 +71,8 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0.1, y: 0.15, z: 0}
---- !u!114 &7435931934660294720
+  m_Center: {x: 0.1, y: 0.19, z: 0}
+--- !u!114 &956632608
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,17 +86,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputX: 0
   InputZ: 0
-  desiredRotationSpeed: 2
+  desiredRotationSpeed: 0.2
   Speed: 0
-  Sprint: 0
-  moveSpeed: 10.2
-  sprintSpeed: 1.84
+  Sprint: 2
+  moveSpeed: 10.54
+  sprintSpeed: 1.2
   allowPlayerRotation: 0
   verticalVel: 0
-  gravity_g: 75
-  ground_detect_radius: 0.4
+  gravity_g: 55.4
+  ground_detect_radius: 8.5
   jumpHeigh: 20
-  jumpSpeed: 35
+  jumpSpeed: 20
   ground_detector: {fileID: 5251991631302667209}
   platform_mask:
     serializedVersion: 2
@@ -104,9 +104,9 @@ MonoBehaviour:
   ground_mask:
     serializedVersion: 2
     m_Bits: 512
-  desiredMovementDirection: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  isInAir: 0
+  desiredMovementDirection: {x: 0.0736182, y: 0, z: 0.029204985}
+  velocity: {x: 0, y: -0.7906356, z: 0}
+  isInAir: 1
   blockRotationPlayer: 0
   is_grounded: 1
   anim: {fileID: 320583949430095053}

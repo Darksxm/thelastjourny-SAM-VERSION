@@ -105,6 +105,17 @@ public class MovementInput : MonoBehaviour
         if (controller.isGrounded)
         {
 
+            var camera = Camera.main;
+            var forward = cam.transform.forward;
+            var right = cam.transform.right;
+
+            forward.y = 0f;
+            right.y = 0f;
+
+            forward.Normalize();
+            right.Normalize();
+
+            desiredMovementDirection = forward * InputZ + right * InputX;
             velocity *= moveSpeed;
             if (is_jumping)
             {
@@ -112,7 +123,7 @@ public class MovementInput : MonoBehaviour
 
 
                 velocity.y = jumpHeigh;
-                velocity.z = jumpSpeed;
+                /*velocity.z = jumpSpeed;*/
                 anim.SetBool("isInAir", true);
 
             }
@@ -122,7 +133,7 @@ public class MovementInput : MonoBehaviour
 
 
                 velocity.y = jumpHeigh;
-                velocity.z = jumpSpeed;
+               /* velocity.z = jumpSpeed;*/
                 anim.SetBool("isInAir", true);
 
             }
@@ -132,7 +143,7 @@ public class MovementInput : MonoBehaviour
                 is_grounded = true;
                 anim.SetBool("isInAir", false);
                 velocity.y = 0f;
-                velocity.z = 0f;
+               /* velocity.z = 0f;*/
 
 
             }
@@ -214,6 +225,7 @@ public class MovementInput : MonoBehaviour
 
     void Acceleration()
     {
+
 
         if (Input.GetKey(KeyCode.W))
         {
